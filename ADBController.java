@@ -4,17 +4,16 @@ import java.util.concurrent.TimeUnit;
 
 public class ADBController {
     public static void main(String[] args) {
-//        List<String> phone_list = new ArrayList<>();
-//        phone_list = getPhoneList();
-//        System.out.println(phone_list);
-//        streamPhoneScreen("RZ8R82G4F8Y");
-//        screenShot("RZ8R82G4F8Y");
-//        openApp("RZ8R82G4F8Y", "com.candela.wecan");
-//        dataInput("RZ8R82G4F8Y");
-//        clickEnter("RZ8R82G4F8Y");
-//        test();
-//        openAppInAll("com.candela.wecan");
-//        grantPermisstion("com.candela.wecan");
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        System.out.println(phone_list);
+        streamPhoneScreen("RZ8R82G4F8Y");
+        screenShot("RZ8R82G4F8Y");
+        openApp("RZ8R82G4F8Y", "com.candela.wecan");
+        dataInput("RZ8R82G4F8Y");
+        clickEnter("RZ8R82G4F8Y");
+        openAppInAll("com.candela.wecan");
+        grantPermisstion("com.candela.wecan");
     }
 
 
@@ -299,15 +298,5 @@ public class ADBController {
         System.out.println("Successfully Locked all devices!");
     }
 
-//    public static void test() {
-//        Runtime rt =Runtime.getRuntime();
-//        String i[]={"xterm","-e","adb devices"+"; bash"};
-//        Process p=null;
-//        try {
-//            p=rt.exec(i);
-//        }catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
 }
 
