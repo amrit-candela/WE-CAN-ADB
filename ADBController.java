@@ -1,19 +1,25 @@
+// Note: Before using Phone for automation please ensure that phone has been enabled for Developers Option
 import java.io.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ADBController {
     public static void main(String[] args) {
-        List<String> phone_list = new ArrayList<>();
-        phone_list = getPhoneList();
-        System.out.println(phone_list);
-        streamPhoneScreen("RZ8R82G4F8Y");
-        screenShot("RZ8R82G4F8Y");
-        openApp("RZ8R82G4F8Y", "com.candela.wecan");
-        dataInput("RZ8R82G4F8Y");
-        clickEnter("RZ8R82G4F8Y");
-        openAppInAll("com.candela.wecan");
-        grantPermisstion("com.candela.wecan");
+
+        ADBController ADBobj = new ADBController();
+        System.out.println(ADBobj.getPhoneList());
+        ADBobj.openAppInAll("com.candela.wecan");
+//        List<String> phone_list = new ArrayList<>();
+//        phone_list = getPhoneList();
+//        System.out.println(phone_list);
+//        streamPhoneScreen("RZ8R82G4F8Y");
+//        swipeLeft("RZ8R82G4F8Y");
+//        screenShot("RZ8R82G4F8Y");
+//        openApp("RZ8R82G4F8Y", "com.candela.wecan");
+//        dataInput("RZ8R82G4F8Y");
+//        clickEnter("RZ8R82G4F8Y");
+//        openAppInAll("com.candela.wecan");
+//        grantPermisstion("com.candela.wecan");
     }
 
 
@@ -188,11 +194,37 @@ public class ADBController {
         }
     }
 
+    public static void clickEnterOnAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input keyevent 66" );
+                Process p1 = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input keyevent 0");
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     public static void clickBack(String deviceName) {
         try {
             Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input keyevent 4");
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void clickBackOnAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input keyevent 4" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -204,11 +236,36 @@ public class ADBController {
         }
     }
 
-    public static void swipeReft(String deviceName) {
+    public static void clickHomeOnAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input keyevent 3" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void swipeRight(String deviceName) {
         try {
             Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 126 472 413 472");
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void swipeRightonAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
+                        "swipe 126 472 413 472" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -220,11 +277,37 @@ public class ADBController {
         }
     }
 
+    public static void swipeLeftonAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
+                        "swipe 426 172 113 172" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void swipeUp(String deviceName) {
         try {
             Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 126 572 126 172");
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void swipeUponAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
+                        "swipe 126 572 126 172" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -236,11 +319,37 @@ public class ADBController {
         }
     }
 
+    public static void swipeDownonAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
+                        "swipe 126 172 126 572" );
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void screenShot(String deviceName) {
         try {
             Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " exec-out screencap -p > shots/" + deviceName + ".png");
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void screenShotofAllPhone() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            try {
+                Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " exec-out screencap -p > " +
+                        "shots/" + deviceName + ".png");
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -253,6 +362,23 @@ public class ADBController {
             p=rt.exec(i);
         }catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public static void streamAllPhoneScreen() {
+        List<String> phone_list = new ArrayList<>();
+        phone_list = getPhoneList();
+        for (String deviceName : phone_list ){
+            Runtime rt =Runtime.getRuntime();
+            String cmd = "adb -s " + deviceName + " exec-out screenrecord --output-format=h264 - | ffplay -framerate 120 -probesize 128 -sync video  -" + "; bash";
+            String i[]={"xterm","-e",cmd};
+            Process p=null;
+            try {
+                p=rt.exec(i);
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
