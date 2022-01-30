@@ -4,11 +4,22 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class ADBController {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         ADBController ADBobj = new ADBController();
         System.out.println(ADBobj.getPhoneList());
-        ADBobj.openAppInAll("com.candela.wecan");
+        ADBobj.swipeRightonAllPhone();
+        TimeUnit.SECONDS.sleep(2);
+        ADBobj.swipeLeftonAllPhone();
+        TimeUnit.SECONDS.sleep(2);
+        ADBobj.swipeUponAllPhone();
+        TimeUnit.SECONDS.sleep(2);
+        ADBobj.swipeDownonAllPhone();
+//        ADBobj.streamAllPhoneScreen();
+//        ADBobj.openAppInAll("com.candela.wecan");
+//        ADBobj.clickEnter("USEU7LIRE685S8PJ");
+//        ADBobj.clickEnter("RZ8R82G4F8Y");
+//        ADBobj.clickEnterOnAllPhone();
 //        List<String> phone_list = new ArrayList<>();
 //        phone_list = getPhoneList();
 //        System.out.println(phone_list);
@@ -250,7 +261,7 @@ public class ADBController {
 
     public static void swipeRight(String deviceName) {
         try {
-            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 126 472 413 472");
+            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 126 472 513 472");
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -262,7 +273,7 @@ public class ADBController {
         for (String deviceName : phone_list ){
             try {
                 Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
-                        "swipe 126 472 413 472" );
+                        "swipe 126 472 513 472" );
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -271,7 +282,7 @@ public class ADBController {
 
     public static void swipeLeft(String deviceName) {
         try {
-            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 426 172 113 172");
+            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 526 172 113 172");
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -283,7 +294,7 @@ public class ADBController {
         for (String deviceName : phone_list ){
             try {
                 Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
-                        "swipe 426 172 113 172" );
+                        "swipe 526 172 113 172" );
             }catch (Exception e) {
                 e.printStackTrace();
             }
@@ -313,7 +324,7 @@ public class ADBController {
 
     public static void swipeDown(String deviceName) {
         try {
-            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 126 172 126 572");
+            Process p = Runtime.getRuntime().exec("adb shell input touchscreen swipe 26 172 126 572");
         }catch (Exception e) {
             e.printStackTrace();
         }
@@ -325,7 +336,7 @@ public class ADBController {
         for (String deviceName : phone_list ){
             try {
                 Process p = Runtime.getRuntime().exec("adb -s " + deviceName + " shell input touchscreen " +
-                        "swipe 126 172 126 572" );
+                        "swipe 26 172 126 572" );
             }catch (Exception e) {
                 e.printStackTrace();
             }
